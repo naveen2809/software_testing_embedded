@@ -1,0 +1,33 @@
+LED Driver Requirements:
+1. The LED Driver controls 16 two state LEDs (On/Off)
+2. The driver can turn on of off individual LEDs without affecting others
+3. The driver can turn on or off all LEDs at once using a single interface call
+4. The user of the driver can query the state of any LED
+5. At power on, the hardware default is for the LEDs to be latched on. They must me turned off by the software
+6. The LEDs are memory mapped to a 16-bit word
+7. A 1 in a bit position turns on the LEDs and a 0 turns it off
+8. The least significant bit corresponds to LED 1 and the most significant bit corresponds to LED 16
+
+Test Cases:
+1. Check that the LED driver's initialization function turns off all the LEDs
+2. Check that the LED driver can correctly turn on all LEDs when the corresponding LED is off
+    - Turn on LED 1, Turn on LED2, ...., Turn on LED 16
+3. Check that the LED driver can correctly turn on all LEDs when the corresponding LED is on
+    - Turn on LED 1, Turn on LED2, ...., Turn on LED 16
+3. Check that the LED driver can correctly turn off all LEDs when the corresponding LED is on
+    - Turn off LED 1, Turn off LED2, ...., Turn off LED 16
+3. Check that the LED driver can correctly turn off all LEDs when the corresponding LED is off
+    - Turn off LED 1, Turn off LED2, ...., Turn off LED 16
+4. Check that the LED driver can turn on all LEDs correctly
+    - Right After intialialization
+    - After some LEDs are turned on
+    - After turning off all LEDs
+5. Check that the LED driver can turn off all the LEDs correctly
+    - Right after initialization
+    - After all LEDs are turned on
+    - After some LEDs are turned on
+6. Check that the LED driver can correctly read the status of an LED that is on when only that LED is on
+    - Read LED 1 (On), Read LED2 (On), ...., Read LED 16 (On)
+7. Check that the LED driver can correctly read the status of an LED that is off when only that LED is off
+    - - Read LED 1 (Off), Read LED2 (Off), ...., Read LED 16 (Off)
+8. Check that all the LEDs are turned on initially (can only be checked on the Target Hardware)
