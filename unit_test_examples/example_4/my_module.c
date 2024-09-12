@@ -2,7 +2,7 @@
 
 static void fill_array(uint8_t value, uint8_t *barray, int len);
 
-extern int write_byte_array(int type, uint8_t *barray, int len)
+int write_byte_array(int type, uint8_t *barray, int len)
 {
 
     if(len <=0)
