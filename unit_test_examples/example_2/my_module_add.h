@@ -1,0 +1,1 @@
+extern int add_num(int x, int y);
