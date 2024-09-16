@@ -42,6 +42,40 @@ void test_gpio_write_reset_pin_15(void)
     TEST_ASSERT_EQUAL_UINT32(0xFFFF7FFF,GPIO_Port.ODR);
 }
 
+void test_gpio_write_set_multiple_pins(void)
+{
+    memset((char *)&GPIO_Port,0x00,sizeof(struct GPIO_RegDef_t));
+    GPIOWritePin((uint32_t *)&GPIO_Port, 0, 1);
+    TEST_ASSERT_EQUAL_UINT32(0x1,GPIO_Port.ODR);
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 1, 1);
+    TEST_ASSERT_EQUAL_UINT32(0x3,GPIO_Port.ODR);
+
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 15, 1);
+    TEST_ASSERT_EQUAL_UINT32(0x8003,GPIO_Port.ODR);
+
+}
+
+void test_gpio_write_reset_multiple_pins(void)
+{
+    memset((char *)&GPIO_Port,0xff,sizeof(struct GPIO_RegDef_t));
+    GPIOWritePin((uint32_t *)&GPIO_Port, 0, 0);
+    TEST_ASSERT_EQUAL_UINT32(0xFFFFFFFE,GPIO_Port.ODR);
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 4, 0);
+    TEST_ASSERT_EQUAL_UINT32(0xFFFFFFEE,GPIO_Port.ODR);
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 6, 0);
+    TEST_ASSERT_EQUAL_UINT32(0xFFFFFFAE,GPIO_Port.ODR);
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 9, 0);
+    TEST_ASSERT_EQUAL_UINT32(0xFFFFFDAE,GPIO_Port.ODR);    
+
+    GPIOWritePin((uint32_t *)&GPIO_Port, 15, 0);
+    TEST_ASSERT_EQUAL_UINT32(0xFFFF7DAE,GPIO_Port.ODR);
+}
+
 void test_gpio_read_pin_0_high(void)
 {
     memset((char *)&GPIO_Port,0x00,sizeof(struct GPIO_RegDef_t));
@@ -332,6 +366,9 @@ int main(void)
     RUN_TEST(test_gpio_write_reset_pin_0);
     RUN_TEST(test_gpio_write_set_pin_15);
     RUN_TEST(test_gpio_write_reset_pin_15);
+
+    RUN_TEST(test_gpio_write_set_multiple_pins);
+    RUN_TEST(test_gpio_write_reset_multiple_pins);
 
     RUN_TEST(test_gpio_read_pin_0_high);
     RUN_TEST(test_gpio_read_pin_0_low);
