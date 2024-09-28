@@ -98,15 +98,24 @@ void test_num_to_word(void)
     //Negative test cases
     memset(output,0xaa,sizeof(output));
     TEST_ASSERT_EQUAL(-1, num_to_word(10,output));
-    TEST_ASSERT_EQUAL_UINT8(0xaa,output[0]);
+    for(i=0;i<sizeof(output);i++)
+    {
+        TEST_ASSERT_EQUAL_UINT8(0xaa,output[i]);
+    }
 
     memset(output,0xaa,sizeof(output));
     TEST_ASSERT_EQUAL(-1, num_to_word(100,output));
-    TEST_ASSERT_EQUAL_UINT8(0xaa,output[0]);
+    for(i=0;i<sizeof(output);i++)
+    {
+        TEST_ASSERT_EQUAL_UINT8(0xaa,output[i]);
+    }
 
     memset(output,0xaa,sizeof(output));
     TEST_ASSERT_EQUAL(-1, num_to_word(-1,output));
-    TEST_ASSERT_EQUAL_UINT8(0xaa,output[0]);
+    for(i=0;i<sizeof(output);i++)
+    {
+        TEST_ASSERT_EQUAL_UINT8(0xaa,output[i]);
+    }
 }
 
 void test_num_to_word_output_array_bounds(void)

@@ -1,0 +1,2 @@
+stm32_startup.c:211:6:Reset_Handler	24	static
+stm32_startup.c:241:6:Default_Handler	4	static
